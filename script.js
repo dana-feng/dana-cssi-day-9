@@ -32,7 +32,7 @@ class BouncyDot {
     // Randomly generate radius
     this.r = random(5, 12);
     // Randomly generate color
-    this.color = random(360);
+    this.color = color(random(360), 80, 70);
     // Randomly generate a master velocity (broken into components)...
     this.masterXvelocity = random(0.5, 3);
     this.masterYvelocity = random(0.5, 3);
@@ -60,7 +60,7 @@ class BouncyDot {
   }
 
   display() {
-    fill(this.color, 80, 70);
+    fill(this.color);
     noStroke();
     ellipse(this.x, this.y, this.r * 2);
   }
