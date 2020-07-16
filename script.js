@@ -5,11 +5,12 @@
           mouseX, mouseY, strokeWeight, line, mouseIsPressed, windowWidth, windowHeight, noStroke, 
           keyCode, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, textSize */
 
-let dots, img;
+let dots, img, rectangle;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
-  colorMode(HSB, 360, 100, 100);
+  //colorMode(HSB, 360, 100, 100);
+  
   img = loadImage('https://cdn.glitch.com/16bc1525-80a1-43db-9e14-53453e1912af%2Fbubble.png?v=1594923427028');
   dots = [];
   for (let j = 0; j < 100; j++) {
@@ -18,17 +19,19 @@ function setup() {
 }
 
 function draw() {
-  background(80, 80, 80);
+  background(0);
+  fill(255);
+  rectangle = rect(mouseX, mouseY, 10,10);
   for (let i = 0; i < dots.length; i++) {
     dots[i].float();
     dots[i].display();
   }
 }
 
-//function mousePressed() {
-// We'll use this for console log statements only.
+function mousePressed() {
+  dots.pop
 
-//}
+}
 
 class BouncyDot {
   constructor() {
@@ -36,7 +39,9 @@ class BouncyDot {
     this.x = random(width);
     this.y = height;
     // Randomly generate radius
-    this.r = random(5, 12);
+    //this.r = random(5, 12);
+    this.width = 50;
+    this.height = 50;
     // Randomly generate color
     this.color = color(random(360), 80, 70);
     // Randomly generate a master velocity (broken into components)...
@@ -57,18 +62,18 @@ class BouncyDot {
     if (this.x < 0) {
       this.xVelocity = this.masterXvelocity;
     }
-    if (this.y + this.r > height) {
+    if (this.y > height) {
       this.yVelocity = -1 * this.masterYvelocity;
     }
-    if (this.y - this.r < 0) {
+    if (this.y < 0) {
       this.y = height;
       //this.yVelocity = this.masterYvelocity;
     }
   }
 
   display() {
-    fill(this.color);
-    noStroke();
+    //fill(this.color);
+    //noStroke();
     image(img, this.x, this.y, this.width, this.height);
     //ellipse(this.x, this.y, this.r * 2);
   }
