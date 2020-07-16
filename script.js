@@ -26,7 +26,7 @@ function draw() {
     textSize(30);
     fill(255);
     text(
-      "Each mouse click will pop a random bubble! Try to get rid of all the bubbles!!", 0,60
+      "Each mouse click will pop a random bubble! Try to get rid of all the bubbles!!", 10,60
     );
     fill(255);
     rectangle = rect(mouseX, mouseY, 10, 10);
@@ -42,7 +42,7 @@ function draw() {
   if (gameOver){
      fill(255);
       textSize(30);
-      text("YOU DID IT!", 0, 60)
+      text("YOU DID IT!", 10, 60)
   } 
   
 }
