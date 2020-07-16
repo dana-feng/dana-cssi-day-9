@@ -12,7 +12,7 @@ function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
   colorMode(HSB, 360, 100, 100);
   dot1 = new BouncyDot();
-  dots = [dot1, dot2, dot3];
+  dots = [dot1];
 }
 
 function draw() {
@@ -24,6 +24,7 @@ function draw() {
 function mousePressed() {
   // We'll use this for console log statements only.
   console.log(dot1.x);
+  dots.push(new BouncyDot)
 }
 
 class BouncyDot {
