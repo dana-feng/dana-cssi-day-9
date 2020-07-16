@@ -6,11 +6,13 @@
           keyCode, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, textSize */
 
 let dot1;
+let dots;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
   colorMode(HSB, 360, 100, 100);
   dot1 = new BouncyDot();
+  dots = [dot1, dot2, dot3];
 }
 
 function draw() {
