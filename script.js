@@ -1,31 +1,33 @@
 // Be sure to name any p5.js functions we use in the global so Glitch can recognize them.
-// Add to this list as you consult the p5.js documentation for other functions. 
+// Add to this list as you consult the p5.js documentation for other functions.
 /* global createCanvas, colorMode, HSB, width, height, random, background, fill, color, random,
           rect, ellipse, stroke, image, loadImage, collideCircleCircle, collideRectCircle, text, 
           mouseX, mouseY, strokeWeight, line, mouseIsPressed, windowWidth, windowHeight, noStroke, 
           keyCode, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, textSize */
 
-let dot1;
 let dots;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
   colorMode(HSB, 360, 100, 100);
-  dot1 = new BouncyDot();
-  dots = [dot1];
+  dots = [];
+  for (let j = 0; j < 100; j++) {
+    dots.push(new BouncyDot());
+  }
 }
 
 function draw() {
   background(220, 0, 80);
-  dot1.float();
-  dot1.display();
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].float();
+    dots[i].display();
+  }
 }
 
-function mousePressed() {
-  // We'll use this for console log statements only.
-  console.log(dot1.x);
-  dots.push(new BouncyDot)
-}
+//function mousePressed() {
+// We'll use this for console log statements only.
+
+//}
 
 class BouncyDot {
   constructor() {
