@@ -5,11 +5,12 @@
           mouseX, mouseY, strokeWeight, line, mouseIsPressed, windowWidth, windowHeight, noStroke, 
           keyCode, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, textSize */
 
-let dots;
+let dots, img;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
   colorMode(HSB, 360, 100, 100);
+  img = loadImage('https://cdn.glitch.com/16bc1525-80a1-43db-9e14-53453e1912af%2Fbubble.png?v=1594923427028');
   dots = [];
   for (let j = 0; j < 100; j++) {
     dots.push(new BouncyDot());
@@ -17,7 +18,7 @@ function setup() {
 }
 
 function draw() {
-  background(220, 0, 80);
+  background(80, 80, 80);
   for (let i = 0; i < dots.length; i++) {
     dots[i].float();
     dots[i].display();
@@ -33,7 +34,7 @@ class BouncyDot {
   constructor() {
     // Randomly generate position
     this.x = random(width);
-    this.y = random(height);
+    this.y = height;
     // Randomly generate radius
     this.r = random(5, 12);
     // Randomly generate color
@@ -50,23 +51,25 @@ class BouncyDot {
     this.x += this.xVelocity;
     this.y += this.yVelocity;
     // Standard bounce code - like the DVD logo, but for spheres.
-    if (this.x + this.r > width) {
+    if (this.x > width) {
       this.xVelocity = -1 * this.masterXvelocity;
     }
-    if (this.x - this.r < 0) {
+    if (this.x < 0) {
       this.xVelocity = this.masterXvelocity;
     }
     if (this.y + this.r > height) {
       this.yVelocity = -1 * this.masterYvelocity;
     }
     if (this.y - this.r < 0) {
-      this.yVelocity = this.masterYvelocity;
+      this.y = height;
+      //this.yVelocity = this.masterYvelocity;
     }
   }
 
   display() {
     fill(this.color);
     noStroke();
-    ellipse(this.x, this.y, this.r * 2);
+    image(img, this.x, this.y, this.width, this.height);
+    //ellipse(this.x, this.y, this.r * 2);
   }
 }
