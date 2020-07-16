@@ -5,13 +5,15 @@
           mouseX, mouseY, strokeWeight, line, mouseIsPressed, windowWidth, windowHeight, noStroke, 
           keyCode, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, textSize */
 
-let dots, img, rectangle;
+let dots, img, rectangle, gameOver;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
   //colorMode(HSB, 360, 100, 100);
-  
-  img = loadImage('https://cdn.glitch.com/16bc1525-80a1-43db-9e14-53453e1912af%2Fbubble.png?v=1594923427028');
+  gameOver = false;
+  img = loadImage(
+    "https://cdn.glitch.com/16bc1525-80a1-43db-9e14-53453e1912af%2Fbubble.png?v=1594923427028"
+  );
   dots = [];
   for (let j = 0; j < 100; j++) {
     dots.push(new BouncyDot());
@@ -20,17 +22,33 @@ function setup() {
 
 function draw() {
   background(0);
-  fill(255);
-  rectangle = rect(mouseX, mouseY, 10,10);
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].float();
-    dots[i].display();
+  if (!gameOver) {
+    textSize(30);
+    fill(255);
+    text(
+      "Each mouse click will pop a random bubble! Try to get rid of all the bubbles!!", 0,60
+    );
+    fill(255);
+    rectangle = rect(mouseX, mouseY, 10, 10);
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].float();
+      dots[i].display();
+    }
+    if (dots.length === 0) {
+      gameOver = true;
+     
+    }
   }
+  if (gameOver){
+     fill(255);
+      textSize(30);
+      text("YOU DID IT!", 0, 60)
+  } 
+  
 }
 
 function mousePressed() {
-  dots.pop
-
+  dots.pop();
 }
 
 class BouncyDot {
@@ -66,8 +84,8 @@ class BouncyDot {
       this.yVelocity = -1 * this.masterYvelocity;
     }
     if (this.y < 0) {
-      this.y = height;
-      //this.yVelocity = this.masterYvelocity;
+      
+      this.y= height;
     }
   }
 
